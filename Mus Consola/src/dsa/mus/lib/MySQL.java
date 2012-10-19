@@ -19,11 +19,11 @@ public class MySQL {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();			
 	
 			// Setup the connection with the DB
-			connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "mimara");	
+			connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "candela");	
 			
 			// Statements allow to issue SQL queries to the database
 			statement = connect.createStatement();			
-			statement.execute("use mus");
+			statement.execute("use ejemplo");
 		
 		} catch (Exception e) 
 		{

@@ -49,8 +49,8 @@ public class AttendClientThread extends Thread {
 				return;
 			}
 			
-    		mySQL.executeQuery("select * from jugador where name='" + player.getName() + "' and " +
-    				"password='" + player.getPassword() + "';");
+    		mySQL.executeQuery("select * from jugador where nombre='" + player.getName() + "' and " +
+    				"contrasena='" + player.getPassword() + "';");
 	    	
     		try {
     			boolean autentication = mySQL.getResultSet().last();
@@ -73,12 +73,11 @@ public class AttendClientThread extends Thread {
     		    		
     		if(Server.getServerThreads().size() >= 4)
     		{	
-    			AttendClientThread[] aCT = Server.getServerThreads().toArray(
-    					new AttendClientThread[Server.getServerThreads().size()]);
+    			int ganador = (int)(Math.random())%2;
+    			AttendClientThread[] aCT = Server.getServerThreads().toArray(new AttendClientThread[Server.getServerThreads().size()]);
     			for( int i = 0; i < aCT.length; i++)
 					try {
-						System.out.println(aCT[i].player.getName() + (int)(Math.random())%2);
-						aCT[i].sOut.writeObject(true);
+						aCT[i].sOut.writeObject( (i == ganador)||(i == ganador+2));
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
